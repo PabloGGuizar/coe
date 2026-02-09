@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipos de citas en los textos académicos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .transition-custom { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .btn-active { background-color: white; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); color: #2563eb; }
+        .btn-inactive { color: #475569; }
+    </style>
+</head>
+<body class="min-h-screen bg-slate-50 p-4 md:p-8 text-slate-800">
+
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <header class="mb-8 text-center">
+            <div class="inline-flex items-center justify-center p-3 bg-blue-600 text-white rounded-2xl mb-4 shadow-lg shadow-blue-200">
+                <i data-lucide="book-open" class="w-8 h-8"></i>
+            </div>
+            <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight">
+                Tipos de citas en los textos académicos
+            </h1>
+            <p class="text-slate-500 mt-2">
+                Domina las diferencias estructurales de la citación académica
+            </p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Controls Panel -->
+            <div class="lg:col-span-1 space-y-6">
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200">
+                    <div class="flex items-center gap-2 mb-6 text-slate-900 font-semibold">
+                        <i data-lucide="settings-2" class="w-5 h-5 text-blue-600"></i>
+                        <h2>Parámetros de la cita</h2>
+                    </div>
+
+                    <!-- Toggle Direct/Indirect -->
+                    <div class="space-y-4">
+                        <div class="flex flex-col gap-2">
+                            <label class="text-sm font-medium text-slate-500 uppercase tracking-wider">Tipo de Contenido</label>
+                            <div class="flex p-1 bg-slate-100 rounded-xl relative">
+                                <button id="btn-direct" class="flex-1 py-2 text-sm font-medium rounded-lg transition-custom z-10 btn-active">
+                                    Directa
+                                </button>
+                                <button id="btn-indirect" class="flex-1 py-2 text-sm font-medium rounded-lg transition-custom z-10 btn-inactive">
+                                    Indirecta
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Toggle Integral/Non-Integral -->
+                        <div class="flex flex-col gap-2 mt-6">
+                            <label class="text-sm font-medium text-slate-500 uppercase tracking-wider">Estructura Narrativa</label>
+                            <div class="flex p-1 bg-slate-100 rounded-xl">
+                                <button id="btn-integral" class="flex-1 py-2 text-sm font-medium rounded-lg transition-custom btn-inactive">
+                                    Integral
+                                </button>
+                                <button id="btn-non-integral" class="flex-1 py-2 text-sm font-medium rounded-lg transition-custom btn-active">
+                                    No Integral
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Tips 1 -->
+                <div class="bg-blue-50 p-6 rounded-3xl border border-blue-100">
+                    <h3 class="text-blue-900 font-bold mb-3 flex items-center gap-2">
+                        <i data-lucide="info" class="w-[18px] h-[18px]"></i>
+                        Sabías que...
+                    </h3>
+                    <p class="text-sm text-blue-800 leading-relaxed">
+                        Las citas <strong>integrales</strong> suelen usarse cuando el autor es una autoridad muy relevante, mientras que las <strong>no integrales</strong> priorizan el dato sobre el autor.
+                    </p>
+                </div>
+
+                <!-- Quick Tips 2 -->
+                <div class="bg-emerald-50 p-6 rounded-3xl border border-emerald-100">
+                    <h3 class="text-emerald-900 font-bold mb-3 flex items-center gap-2">
+                        <i data-lucide="lightbulb" class="w-[18px] h-[18px]"></i>
+                        Sabías que...
+                    </h3>
+                    <p class="text-sm text-emerald-800 leading-relaxed">
+                        Usa la cita <strong>directa</strong> para definiciones exactas o frases importantes. Prefiere la <strong>indirecta</strong> para resumir hallazgos e integrarlos con tu propia voz de escritor.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Result Area -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Citation Display -->
+                <div class="bg-white p-8 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10">
+                        <i data-lucide="quote" class="w-20 h-20"></i>
+                    </div>
+                    
+                    <span class="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full mb-4 uppercase tracking-widest">
+                        Vista previa
+                    </span>
+                    
+                    <h2 id="result-title" class="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                        <!-- Título dinámico -->
+                    </h2>
+
+                    <div class="text-lg leading-relaxed text-slate-700 bg-slate-50 p-6 rounded-2xl border border-dashed border-slate-300 min-h-[140px] flex items-center">
+                        <div id="result-text" class="transition-all duration-300 w-full">
+                            <!-- Texto dinámico -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Explanation Box -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+                    <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                        <i data-lucide="arrow-right-left" class="w-5 h-5 text-emerald-500"></i>
+                        Análisis técnico
+                    </h3>
+                    <p id="result-explanation" class="text-slate-600 mb-6 leading-relaxed">
+                        <!-- Explicación dinámica -->
+                    </p>
+                    
+                    <div id="result-pros" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- Pros dinámicos -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <footer class="mt-12 pt-8 border-t border-slate-200">
+            <div class="flex flex-wrap gap-6 justify-center text-sm font-medium text-slate-400">
+                <div class="flex items-center gap-2">
+                    <div class="w-3 h-3 rounded-full bg-blue-600"></div>
+                    <span>Referencia bibliográfica</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <div class="w-3 h-3 rounded-full bg-emerald-600"></div>
+                    <span>Contenido literal</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <div class="w-3 h-3 rounded-full bg-slate-700"></div>
+                    <span>Texto narrativo</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // State
+        let isDirect = true;
+        let isIntegral = false;
+
+        // Elements
+        const btnDirect = document.getElementById('btn-direct');
+        const btnIndirect = document.getElementById('btn-indirect');
+        const btnIntegral = document.getElementById('btn-integral');
+        const btnNonIntegral = document.getElementById('btn-non-integral');
+        
+        const titleEl = document.getElementById('result-title');
+        const textEl = document.getElementById('result-text');
+        const explanationEl = document.getElementById('result-explanation');
+        const prosEl = document.getElementById('result-pros');
+
+        function updateUI() {
+            // Update buttons classes
+            btnDirect.className = isDirect ? "flex-1 py-2 text-sm font-medium rounded-lg transition-custom z-10 btn-active" : "flex-1 py-2 text-sm font-medium rounded-lg transition-custom z-10 btn-inactive";
+            btnIndirect.className = !isDirect ? "flex-1 py-2 text-sm font-medium rounded-lg transition-custom z-10 btn-active" : "flex-1 py-2 text-sm font-medium rounded-lg transition-custom z-10 btn-inactive";
+            btnIntegral.className = isIntegral ? "flex-1 py-2 text-sm font-medium rounded-lg transition-custom btn-active" : "flex-1 py-2 text-sm font-medium rounded-lg transition-custom btn-inactive";
+            btnNonIntegral.className = !isIntegral ? "flex-1 py-2 text-sm font-medium rounded-lg transition-custom btn-active" : "flex-1 py-2 text-sm font-medium rounded-lg transition-custom btn-inactive";
+
+            let content = {};
+
+            if (isDirect) {
+                if (isIntegral) {
+                    content = {
+                        title: "Cita Directa Integral (Narrativa)",
+                        text: `<span class="font-bold text-blue-600">Massi (2005)</span> afirma que la indispensabilidad de las citas en el discurso académico se debe a que este tipo de discurso <span class="italic text-emerald-600">“construye su línea argumentativa sobre la base de ideas y razonamientos previos que le sirven de punto de partida”</span> <span class="font-bold text-blue-600">(p. 4)</span>.`,
+                        explanation: "El autor se incorpora en la narrativa de la oración como sujeto. Al ser una cita directa, las palabras exactas van entre comillas y el número de página se coloca al final.",
+                        pros: ["Enfatiza al autor", "Mantiene la literalidad", "Útil para analizar la voz del autor"]
+                    };
+                } else {
+                    content = {
+                        title: "Cita Directa No Integral (Parentética)",
+                        text: `La indispensabilidad de las citas en el discurso académico se debe a que este tipo de discurso <span class="italic text-emerald-600">“construye su línea argumentativa sobre la base de ideas y razonamientos previos que le sirven de punto de partida”</span> <span class="font-bold text-blue-600">(Massi, 2005, p. 4)</span>.`,
+                        explanation: "La cita se centra en la información. El autor, el año y la página aparecen entre paréntesis al final de la frase. Se usan comillas para indicar la literalidad.",
+                        pros: ["Enfatiza el mensaje", "No interrumpe el flujo narrativo", "Estilo estándar en ciencias sociales"]
+                    };
+                }
+            } else {
+                if (isIntegral) {
+                    content = {
+                        title: "Cita Indirecta Integral (Narrativa)",
+                        text: `Según <span class="font-bold text-blue-600">Massi (2005)</span>, las citas son fundamentales en el ámbito académico porque el discurso se fundamenta en conceptos y premisas anteriores que actúan como cimiento para nuevos argumentos.`,
+                        explanation: "Se parafrasea la idea del autor con palabras propias, integrando el nombre del autor en el discurso. No se usan comillas y la página es opcional pero recomendada.",
+                        pros: ["Demuestra comprensión", "Mejora la fluidez del texto", "Conecta ideas de forma natural"]
+                    };
+                } else {
+                    content = {
+                        title: "Cita Indirecta No Integral (Parentética)",
+                        text: `La importancia de citar en el entorno académico radica en que el discurso científico se apoya necesariamente en razonamientos previos para establecer su propio punto de inicio <span class="font-bold text-blue-600">(Massi, 2005)</span>.`,
+                        explanation: "Se explica la idea con palabras propias y se coloca la referencia al final. Es ideal para resumir ideas generales de una obra sin interrumpir la lectura con nombres de autores.",
+                        pros: ["Máxima fluidez", "Ideal para síntesis", "Mantiene el foco en el argumento"]
+                    };
+                }
+            }
+
+            // Render
+            titleEl.textContent = content.title;
+            textEl.innerHTML = content.text;
+            explanationEl.textContent = content.explanation;
+            
+            prosEl.innerHTML = content.pros.map(pro => `
+                <div class="flex items-center gap-2 p-3 bg-slate-50 text-slate-700 rounded-xl text-xs font-semibold border border-slate-100">
+                    <div class="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0"></div>
+                    ${pro}
+                </div>
+            `).join('');
+        }
+
+        // Event Listeners
+        btnDirect.addEventListener('click', () => { isDirect = true; updateUI(); });
+        btnIndirect.addEventListener('click', () => { isDirect = false; updateUI(); });
+        btnIntegral.addEventListener('click', () => { isIntegral = true; updateUI(); });
+        btnNonIntegral.addEventListener('click', () => { isIntegral = false; updateUI(); });
+
+        // Initial Load
+        window.onload = () => {
+            lucide.createIcons();
+            updateUI();
+        };
+    </script>
+</body>
+</html>
